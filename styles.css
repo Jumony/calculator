@@ -1,0 +1,68 @@
+body {
+    display:flex;
+    justify-content: center;
+}
+.container {
+    display:flex;
+    flex-direction: column;
+    width: 400px;
+    height: 600px;
+    background-color: lightgray;
+    border-radius: 8px;
+    align-items: center;
+}
+
+.display {
+    display:flex;
+    width: 360px;
+    height: 100px;
+    margin-top: 20px;
+    border-radius: 8px;
+    background-color: green;
+}
+
+.bottom-half {
+    display:flex;
+}
+
+.buttons {
+    display:flex;
+    flex-wrap: wrap;
+    background-color: pink;
+    width: 275px;
+    height:400px;
+    margin-top: 40px;
+    justify-content: space-around;
+    align-content: space-around;
+}
+
+.number, .zero {
+    height: 75px;
+    width: 75px; /* Adjust based on available width and spacing */
+    margin: 5px; /* Adjust spacing between buttons */
+    font-size: 24px; /* Optional: Adjust font size for button text */
+    border-radius: 100px;
+}
+
+.zero {
+    width: 160px;
+}
+
+.operation-column {
+    display:flex;
+    flex-direction: column;
+    background-color: lightblue;
+    margin-top: 40px;
+    height:400px;
+    width:80px;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.operation {
+    height: 75px;
+    width:75px;
+    border-radius: 100px;
+    font-size: 24px;
+    font-weight: bolder;
+}
