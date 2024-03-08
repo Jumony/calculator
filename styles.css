@@ -14,11 +14,14 @@ body {
 
 .display {
     display:flex;
+    flex-direction: column;
     width: 360px;
     height: 100px;
     margin-top: 20px;
     border-radius: 8px;
     background-color: green;
+    justify-content: space-between;
+    
 }
 
 .bottom-half {
@@ -68,7 +71,15 @@ body {
 }
 
 .display {
+
+}
+
+.equation-info {
+    margin-bottom: 0px;
+    margin-left:20px;
+}
+
+.current-equation {
     display:flex;
-    justify-content: right;
-    align-items:end;
+    justify-content: end;
 }

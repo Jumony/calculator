@@ -1,10 +1,11 @@
-let firstNumber;
+let firstNumber = 0;
 let secondNumber = '';
 let currentOperator;
 let currentTotal;
 let operatorIsActive = false;
 let displayNode = document.querySelector('.display');
-let displayValue = document.createElement('p');
+let displayValue = document.querySelector('.current-equation');
+let equationInfoNode = document.querySelector('.equation-info')
 
 // Setting up display value
 displayValue.textContent = '';
@@ -12,7 +13,9 @@ displayNode.appendChild(displayValue)
 displayValue.style.paddingRight = '10px';
 displayValue.style.fontFamily = 'arial';
 displayValue.style.fontSize = '24px';
+equationInfoNode.textContent = '';
 
+// on number click
 document.querySelectorAll('.number').forEach((button) => {
     button.addEventListener('click', () => {
         displayValue.textContent += button.textContent;
@@ -26,29 +29,57 @@ document.querySelectorAll('.number').forEach((button) => {
 
 document.querySelectorAll('.operation').forEach((button) => {
     button.addEventListener('click', () => {
-        if (operatorIsActive) {
-            firstNumber = operate(firstNumber, secondNumber, currentOperator)
-            console.log(`beforestuff(${firstNumber})`);
-            secondNumber = '';
-        }
-        if (displayValue.textContent !== '' && !operatorIsActive) {
-            firstNumber = parseFloat(displayValue.textContent);
-            console.log(`notempty-check(${firstNumber})`);
-        }
-        currentOperator = button.textContent;
-        operatorIsActive = true;
-        console.log(`firstNumbe is ${firstNumber}. secondNumber is ${secondNumber}`);
-        clearDisplay();
+        handleOperatorClick(button);
     })
 })
 
+// equal sign functionality
+let equalNode = document.querySelector('.equal');
+equalNode.addEventListener('click', () => {
+    equationInfoNode.textContent += displayValue.textContent + ' ' + '='
+    operatorIsActive = false;
+    updateDisplay(operate(firstNumber, secondNumber, currentOperator))
+})
+
+// clear sign functionality
+let clearNode = document.querySelector('.clear');
+clearNode.addEventListener('click', () => {
+    firstNumber = 0;
+    secondNumber = '';
+    operatorIsActive = false
+    clearDisplay();
+    clearEquationInfo();
+})
+
+// handle operator click
+function handleOperatorClick(button) {
+    if (operatorIsActive) {
+        firstNumber = operate(firstNumber, secondNumber, currentOperator)
+        secondNumber = ''
+    }
+    if (displayValue.textContent !== '' && !operatorIsActive) {
+        firstNumber = parseFloat(displayValue.textContent);
+    }
+    currentOperator = button.textContent;
+    operatorIsActive = true
+    equationInfoNode.textContent += displayValue.textContent + ' ' + currentOperator + ' '
+    clearDisplay();
+}
+
+// Calculator Display Functions
 function updateDisplay(newDisplay) {
     displayValue.textContent = newDisplay;
 }
 
 function clearDisplay() {
-    displayValue.textContent = ''
+    displayValue.textContent = '';
 }
+
+function clearEquationInfo() {
+    equationInfoNode.textContent = '';
+}
+
+// Basic Calculator Arithmetic Functions
 
 function operate (num1, num2, operator) {
     if (operator === '+') {
