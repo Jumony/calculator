@@ -18,12 +18,7 @@ equationInfoNode.textContent = '';
 // on number click
 document.querySelectorAll('.number').forEach((button) => {
     button.addEventListener('click', () => {
-        displayValue.textContent += button.textContent;
-        if (operatorIsActive)
-        {
-            secondNumber = displayValue.textContent;
-        }
-        
+        handleNumberClick(button);
     })
 })
 
@@ -36,7 +31,7 @@ document.querySelectorAll('.operation').forEach((button) => {
 // equal sign functionality
 let equalNode = document.querySelector('.equal');
 equalNode.addEventListener('click', () => {
-    equationInfoNode.textContent += displayValue.textContent + ' ' + '='
+    equationInfoNode.textContent += displayValue.textContent + ' ' + '= '
     operatorIsActive = false;
     updateDisplay(operate(firstNumber, secondNumber, currentOperator))
 })
@@ -53,19 +48,32 @@ clearNode.addEventListener('click', () => {
 
 // handle operator click
 function handleOperatorClick(button) {
-    if (operatorIsActive) {
+    if (operatorIsActive && displayValue.textContent !== '') {
         firstNumber = operate(firstNumber, secondNumber, currentOperator)
         secondNumber = ''
     }
-    if (displayValue.textContent !== '' && !operatorIsActive) {
-        firstNumber = parseFloat(displayValue.textContent);
+    if (displayValue.textContent === '' && operatorIsActive) {
+        currentOperator = button.textContent;
     }
-    currentOperator = button.textContent;
+    else if (displayValue.textContent !== '' && !operatorIsActive) {
+        firstNumber = parseFloat(displayValue.textContent);
+        currentOperator = button.textContent;
+    }
+
     operatorIsActive = true
     equationInfoNode.textContent += displayValue.textContent + ' ' + currentOperator + ' '
     clearDisplay();
 }
 
+// handle number click
+function handleNumberClick(button) {
+    if (displayValue.textContent.length < 12) {
+        displayValue.textContent += button.textContent;
+        if (operatorIsActive) {
+            secondNumber = displayValue.textContent;
+        }
+    } 
+}
 // Calculator Display Functions
 function updateDisplay(newDisplay) {
     displayValue.textContent = newDisplay;

@@ -5,11 +5,19 @@ body {
 .container {
     display:flex;
     flex-direction: column;
+    gap:40px;
     width: 400px;
     height: 600px;
     background-color: lightgray;
     border-radius: 8px;
     align-items: center;
+    box-shadow: 0px 0px 50px black;
+}
+
+.calculator {
+    display:flex;
+    flex-direction: column;
+    gap:40px;
 }
 
 .display {
@@ -26,25 +34,28 @@ body {
 
 .bottom-half {
     display:flex;
+    box-shadow: inset 0px 0px 10px gray;
 }
-
 .buttons {
     display:flex;
     flex-wrap: wrap;
-    background-color: pink;
+    /*background-color: pink;*/
     width: 275px;
     height:400px;
-    margin-top: 40px;
     justify-content: space-around;
     align-content: space-around;
 }
 
 .number, .zero, .clear, .equal {
     height: 75px;
-    width: 75px; /* Adjust based on available width and spacing */
-    margin: 5px; /* Adjust spacing between buttons */
-    font-size: 24px; /* Optional: Adjust font size for button text */
+    width: 75px; 
+    margin: 5px; 
+    font-size: 24px; 
     border-radius: 100px;
+    border: 0px; 
+}
+.number, .zero, .clear, .equal:hover {
+    cursor:pointer;
 }
 
 .zero {
@@ -54,8 +65,7 @@ body {
 .operation-column {
     display:flex;
     flex-direction: column;
-    background-color: lightblue;
-    margin-top: 40px;
+    /* background-color: lightblue; */
     height:400px;
     width:80px;
     justify-content: space-around;
@@ -68,10 +78,10 @@ body {
     border-radius: 100px;
     font-size: 24px;
     font-weight: bolder;
+    border:0px;
 }
-
-.display {
-
+.operation:hover {
+    cursor:pointer;
 }
 
 .equation-info {
