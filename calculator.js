@@ -139,7 +139,7 @@ function insertImage() {
     // Create image element
     let img = document.createElement('img');
     img.src = 'images/thousand-yard-stare.jpg';
-    img.alt = 'yourimgtext';
+    img.alt = 'the voices';
 
     // Apply styles to the image for absolute positioning
     img.style.position = 'absolute';
@@ -147,7 +147,7 @@ function insertImage() {
     img.style.left = '0';
     img.style.width = '100%';
     img.style.height = '100%';
-    img.style.zIndex = '999'; // Set a high z-index to make sure it's above everything
+    img.style.zIndex = '999';
 
     // Append the image to the display container
     displayValue.innerHTML = '';
